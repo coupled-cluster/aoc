@@ -1,10 +1,8 @@
 """Read in"""
 def read_in(name):
-  # read raw data
   dat = open(name,"rb")
   liste = [i.rstrip() for i in dat.readlines()]
   dat.close()
-  # split into groups
   groups = [" " if len(i)==0 else i+"," for i in liste]
   if groups[-1] == " ": groups = groups[:-1]
   groups = [i.split(",")[:-1] for i in "".join(groups).split(" ")]

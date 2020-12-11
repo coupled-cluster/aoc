@@ -1,10 +1,8 @@
 """Read-in"""
 def read_input(filename):
-  # raw data
   dat = open(filename,"rb")
   liste = [i.rstrip() for i in dat.readlines()]
   dat.close()
-  # Put into dictionary
   kdict = {}
   for i in range(len(liste)):
     sl = liste[i].replace(" contain ",",")

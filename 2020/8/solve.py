@@ -5,7 +5,7 @@ def read_in(name):
   dat.close()
   return lines
 
-# run program
+"""Run program"""
 def run(lines,start=0):
   liste = []
   val   = 0

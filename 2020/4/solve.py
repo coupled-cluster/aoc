@@ -1,10 +1,8 @@
 """Read-in data"""
 def read_in(name):
-  # Read in raw_data
   dat   = open(name,"rb")
   liste = dat.readlines()
   dat.close()
-  # Convert to dictionary
   passports = []
   pp        = {}
   for i in liste:

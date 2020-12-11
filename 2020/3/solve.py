@@ -10,11 +10,9 @@ def count_trees(field,width,height,vec):
   pos   = [0,0]
   count = int(field[pos[0]][pos[1]] == "#")
   for i in range((height-1)/vec[0]):
-    # move sleigh
     pos = [pos[i]+vec[i] for i in range(len(pos))]
     while pos[1] >= width:
       pos[1] -= width
-    # check for tree
     count += int(field[pos[0]][pos[1]] == "#")
   return count
 
