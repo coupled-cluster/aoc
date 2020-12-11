@@ -5,33 +5,17 @@ def read_in(name):
   dat.close()
   return [list(i.rstrip()) for i in liste]
 
-"""Check for tree"""
-def check(field,pos):
-  val = field[pos[0]][pos[1]]
-  if val == ".":
-    return 0
-  elif val == "#":
-    return 1
-
-"""Map position from continuous to finite map"""
-def map(pos,width):
-  newpos = list(pos)
-  while newpos[1] >= width:
-    newpos[1] -= width
-  return newpos
-
-"""Move the sleigh"""
-def move(pos,vec,width,length=2):
-  newpos = [pos[i]+vec[i] for i in range(length)]
-  return map(newpos,width)
-
 """Counting routine"""
 def count_trees(field,width,height,vec):
-  pos    = [0,0]
-  count = check(field,pos)
+  pos   = [0,0]
+  count = int(field[pos[0]][pos[1]] == "#")
   for i in range((height-1)/vec[0]):
-    pos    = move(pos,vec,width)
-    count += check(field,pos)
+    # move sleigh
+    pos = [pos[i]+vec[i] for i in range(len(pos))]
+    while pos[1] >= width:
+      pos[1] -= width
+    # check for tree
+    count += int(field[pos[0]][pos[1]] == "#")
   return count
 
 # Read in field
