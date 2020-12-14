@@ -5,20 +5,17 @@ def read_input(filename):
   dat.close()
   kdict = {}
   for i in range(len(liste)):
-    sl = liste[i].replace(" contain ",",")
-    sl = sl.replace(".","")
-    sl = sl.replace(", ",",")
-    sl = sl.replace(" bags","")
-    sl = sl.replace(" bag","")
-    sl = sl.split(",")
-    key = sl[0]
-    kl  = []
+    rdict = {" contain ":",",".":"",", ":","," bags":""," bag":""}
+    for a in rdict:
+      liste[i] = liste[i].replace(a,rdict[a])
+    sl = liste[i].split(",")
+    kl = []
     for a in range(1,len(sl)):
       if sl[a] != "no other":
         count = int(sl[a].split()[0])
         color = sl[a].replace(str(count)+" ","")
         kl.append([color,count])
-    kdict[key] = kl
+    kdict[sl[0]] = kl
   return kdict
 
 """Find contained bag"""
@@ -31,7 +28,7 @@ def find_bag(kdict,name):
         break
   return liste
 
-"""recursive bag find"""
+"""Recursive bag find"""
 def recursive_find(kdict,val,liste):
   nl = find_bag(kdict,val) 
   for i in nl:
@@ -39,7 +36,7 @@ def recursive_find(kdict,val,liste):
       liste.append(i)
       recursive_find(kdict,i,liste)
 
-"""recursive count"""
+"""Recursive count"""
 def rec_count(kdict,val):
   nl    = kdict[val]
   count = 1
