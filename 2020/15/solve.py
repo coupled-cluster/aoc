@@ -4,17 +4,12 @@ def iterate(liste,maxi):
   idict = {liste[i]:i for i in range(index)}
   val   = liste[-1]
   for i in range(index,maxi-1):
-    try:
-      tmp = i - idict[val]
-    except:
-      tmp = 0
-    idict[val] = i
-    val        = tmp
+    tmp        = val
+    val        = i - idict.get(tmp,i)
+    idict[tmp] = i
   return val
 
 liste = [5,1,9,18,13,8,0]
-#liste = [0,3,6]
-
 # Answer part 1
 print iterate(liste,2020)
 # Answer part 2
